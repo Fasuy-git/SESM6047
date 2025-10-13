@@ -40,11 +40,11 @@
   ],
   footer: context [
     #align(center)[
-      #box(height: 14pt)[#v(0.35cm) #line(length: 45%)]
+      #box(height: 14pt)[#v(0.35cm) #line(length: 43%)]
       #h(0.569cm)
       #counter(page).display("1")
       #h(0.569cm)
-      #box(height: 14pt)[#v(0.35cm) #line(length: 45%)]
+      #box(height: 14pt)[#v(0.35cm) #line(length: 43%)]
     ]
   ],
 )
@@ -54,10 +54,6 @@
 #set par(
   spacing: 0.65em,
 )
-
-#set heading(numbering: "1.")
-#set math.mat(delim: "[")
-#set math.vec(delim: "[")
 
 #show heading: set block(below: 1.2em)
 #set par(spacing: 1.5em)
@@ -86,4 +82,12 @@
 
 ]<contents>
 
-#include "lecture_1/lecture_1.typ"
+#include "definitions.typ"
+
+#show: equate.with(breakable: true, sub-numbering: true)
+#set math.equation(numbering: "(1.1)", supplement: [Eq.])
+#set heading(numbering: "1.") // This should really index from 0 or this module
+#set math.mat(delim: "[")
+#set math.vec(delim: "{")
+
+#include "lecture_0/lecture_0.typ"
