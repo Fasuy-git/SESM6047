@@ -86,8 +86,10 @@
 
 #show: equate.with(breakable: true, sub-numbering: true)
 #set math.equation(numbering: "(1.1)", supplement: [Eq.])
-#set heading(numbering: "1.") // This should really index from 0 or this module
-#set math.mat(delim: "[")
+
+#set heading(numbering: (n1, ..x) => numbering("1.", n1 - 1, ..x))
+
 #set math.vec(delim: "{")
+#set math.mat(delim: "[")
 
 #include "lecture_0/lecture_0.typ"
