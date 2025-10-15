@@ -483,9 +483,191 @@ $
   [overline(K)]_(n times n) = [A]_(m times n)^(T) [K]_(n times n) [A]_(n times m)
 $<0-zero-padding-general>
 
-As an example a $2 times 2$ matrix is embedded into a $5 times 5$ matrix using *@0-zero-padding-general*, this is shown in.
+As an example a $2 times 2$ matrix is embedded into a $5 times 5$ matrix using *@0-zero-padding-general*, this is shown in *@0-5x5-padded* .
 
-// Add example
-// Mention how we can control movement along the diagonal by moving the 1,1 down the array
-// Mention banded matrices as well
-// Have a look at notes and see what they mean about the identuity matrix
+$
+  [K]_(2 times 2) = mat(k_(11), k_(12); k_(21), k_(22))_(2 times 5)
+  quad quad
+  [A]_(2 times 5) = mat(1, 0, 0, 0, 0; 0, 1, 0, 0, 0)_(2 times 5)
+  \
+  [overline(K)]_(5 times 5) = [A]_(5 times 2)^(T)[K]_(2 times 2)[A]_(2 times 5)
+  \
+  [overline(K)]_(5 times 5) = mat(1, 0; 0, 1; 0, 0; 0, 0; 0, 0)_(5 times 2) mat(k_(11), k_(12); k_(21), k_(22))_(2 times 5) mat(1, 0, 0, 0, 0; 0, 1, 0, 0, 0)_(2 times 5) =
+  mat(
+    k_(11), k_(12), 0, 0, 0;
+    k_(21), k_(22), 0, 0, 0;
+    0, 0, 0, 0, 0;
+    0, 0, 0, 0, 0;
+  )_(5 times 5)
+$<0-5x5-padded>
+
+Note that the placement of the $[K]$ matrix is dependant on where the ones are within the $[A]$ matrix. The further along the array the cascading ones are, the further down the diagonal the inserted  $[K]$ matrix is. This process can be used to make a *banded matrix*, which is shown in *@0-banded-matrix-example*.
+
+$
+  mat(
+    k_(11), k_(12), 0, 0, 0;
+    k_(21), k_(22), 0, 0, 0;
+    0, 0, 0, 0, 0;
+    0, 0, 0, 0, 0;
+    0, 0, 0, 0, 0
+  )_(5 times 5) +
+  mat(
+    0, 0, 0, 0, 0;
+    0, k_(11), k_(12), 0, 0;
+    0, k_(21), k_(22), 0, 0;
+    0, 0, 0, 0, 0;
+    0, 0, 0, 0, 0
+  )_(5 times 5) +
+  mat(
+    0, 0, 0, 0, 0;
+    0, 0, 0, 0, 0;
+    0, 0, k_(11), k_(12), 0;
+    0, 0, k_(21), k_(22), 0;
+    0, 0, 0, 0, 0
+  )_(5 times 5) +
+  mat(
+    0, 0, 0, 0, 0;
+    0, 0, 0, 0, 0;
+    0, 0, 0, 0, 0;
+    0, 0, 0, k_(11), k_(12);
+    0, 0, 0, k_(21), k_(22)
+  )_(5 times 5)
+  \ =
+  mat(
+    k_(1 1), k_(1 2), 0, 0, 0;
+    k_(2 1), k_(2 2) + k_(1 1), k_(1 2), 0, 0;
+    0, k_(2 1), k_(2 2) + k_(1 1), k_(1 2), 0;
+    0, 0, k_(2 1), k_(2 2) + k_(1 1), k_(1 2);
+    0, 0, 0, k_(2 1), k_(2 2)
+  )_(5 times 5)
+$<0-banded-matrix-example>
+
+== Matrix Cutting
+
+In a similar way to how a matrix can be padded, it can also be cut to reduce the shape. This process has the following steps:
+
++ Start with an identity matrix the same size as the matrix to shorten.
+
++ Delete the columns you want to remove from the main matrix, keeping it square (this also will delete the rows with the same index).
+
++ Pre-multiply by the transpose of this reduced identity matrix and post-multiply by the original matrix to obtain the reduced form.
+
+*@0-matrix-cutting-example* Is an example of this where the 2nd, 3rd and 4th rows are removed from $[B]$.
+
+$
+  [B]_(5 times 5) = mat(
+    b_(11), b_(12), b_(13), b_(14), b_(15);
+    b_(21), b_(22), b_(23), b_(24), b_(25);
+    b_(31), b_(32), b_(33), b_(34), b_(35);
+    b_(41), b_(42), b_(43), b_(44), b_(45);
+    b_(51), b_(52), b_(53), b_(54), b_(55);
+  )_(5 times 5)
+  \
+  [I]_(5 times 5)= mat(
+    1, 0, 0, 0, 0;
+    0, 1, 0, 0, 0;
+    0, 0, 1, 0, 0;
+    0, 0, 0, 1, 0;
+    0, 0, 0, 0, 1
+  )_(5 times 2)
+  arrow.r
+  [C]_(5 times 3) = mat(
+    1, cancel(0, angle: #0deg), 0, cancel(0, angle: #0deg), cancel(0, angle: #0deg);
+    0, cancel(1, angle: #0deg), 0, cancel(0, angle: #0deg), cancel(0, angle: #0deg);
+    0, cancel(0, angle: #0deg), 1, cancel(0, angle: #0deg), cancel(0, angle: #0deg);
+    0, cancel(0, angle: #0deg), 0, cancel(1, angle: #0deg), cancel(0, angle: #0deg);
+    0, cancel(0, angle: #0deg), 0, cancel(0, angle: #0deg), cancel(1, angle: #0deg)
+  )_(5 times 2)
+  = mat(
+    1, 0;
+    0, 0;
+    0, 1;
+    0, 0;
+    0, 0;
+  )_(5 times 2)
+  \
+  [overline(B)]_(2 times 2) = [C]_(2 times 5)^T [B]_(5 times 5)[C]_(5 times 3)
+  \ =
+  mat(
+    1, 0, 0, 0, 0;
+    0, 0, 1, 0, 0
+  )_(2 times 5)
+  mat(
+    b_(11), b_(12), b_(13), b_(14), b_(15);
+    b_(21), b_(22), b_(23), b_(24), b_(25);
+    b_(31), b_(32), b_(33), b_(34), b_(35);
+    b_(41), b_(42), b_(43), b_(44), b_(45);
+    b_(51), b_(52), b_(53), b_(54), b_(55)
+  )_(5 times 5)
+  mat(
+    1, 0;
+    0, 0;
+    0, 1;
+    0, 0;
+    0, 0
+  )_(5 times 2)
+  = mat(
+    b_(11), b_(13);
+    b_(31), b_(33)
+  )_(2 times 2)
+$<0-matrix-cutting-example>
+
+== Vector Insertion and Cutting
+
+=== Vector Insertion
+
+Vector insertion is easier than matrices padding, the following steps are used:
+
+#set enum(numbering: "1.a)")
+
++ Define a matrix with zeros that has the following properties:
+
+  + Number of rows equals the final major dimension of the vector
+  + Number of columns equals the current major dimension of the vector
+
++ Add ones within the columns to specify where the zeroes will be inserted (see *@0-vector-insertion*).
+
++ Pre-multiply by this matrix to obtain the modified column vector.
+
+An example of this is shown in
+*@0-vector-insertion* where zeroes are added before  and after $q_1$ yielding the modfied ${overline(q)}_(5 times 1)$.
+
+$
+  {q}_(3 times 1) = vec(q_1, q_2, q_3)_(3 times 1)
+  [C]_(5 times 3) = mat(
+    0, 0, 0;
+    1, 0, 0;
+    0, 0, 0;
+    0, 1, 0;
+    0, 0, 1;
+  )_(5 times 3)
+  \
+  {overline(q)}_(5 times 1) = [C]_(5 times 3){q}_(3 times 1) =
+  mat(
+    0, 0, 0;
+    1, 0, 0;
+    0, 0, 0;
+    0, 1, 0;
+    0, 0, 1;
+  )_(5 times 3)
+  vec(q_1, q_2, q_3)_(3 times 1)
+  =
+  vec(0, q_1, 0, q_2, q_3)_(5 times 1)
+$<0-vector-insertion>
+
+=== Vector Cutting
+
+This process is similar to insertion with the key difference being pre-multiplication by a differently shaped $[C]$ matrix:
+
++ Define a matrix with zeros that has the following properties:
+
+  + Number of *columns* equals the final major dimension of the vector
+  + Number of *rows* equals the current major dimension of the vector
+
++ Add ones within the columns to specify which values will be kept after the cut (see *@0-vector-insertion*).
+
++ Pre-multiply by this matrix to obtain the modified column vector.
+
+
+// Add an example
+// Make sure you change that refrence
