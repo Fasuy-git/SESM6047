@@ -664,10 +664,54 @@ This process is similar to insertion with the key difference being pre-multiplic
   + Number of *columns* equals the final major dimension of the vector
   + Number of *rows* equals the current major dimension of the vector
 
-+ Add ones within the columns to specify which values will be kept after the cut (see *@0-vector-insertion*).
++ Add ones within the columns to specify which values will be kept after the cut (see *@0-vector-cutting*).
 
 + Pre-multiply by this matrix to obtain the modified column vector.
 
+An example of this is shown in *@0-vector-cutting* where the size of the vector is reduced by removing the first and third terms.
 
-// Add an example
-// Make sure you change that refrence
+$
+  {q}_(5 times 1) = vec(q_1, q_2, q_3, q_4, q_5)_(5 times 1)
+  [C]_(5 times 3) = mat(
+    0, 1, 0, 0, 0;
+    0, 0, 0, 1, 0;
+    0, 0, 0, 0, 1;
+  )_(3 times 5)
+  \
+  {overline(q)}_(3 times 1) = [C]_(3 times 5){q}_(5 times 1) =
+  mat(
+    0, 1, 0, 0, 0;
+    0, 0, 0, 1, 0;
+    0, 0, 0, 0, 1;
+  )_(3 times 5)
+  vec(q_1, q_2, q_3, q_4, q_5)_(5 times 1)
+  =
+  vec(q_2, q_4, q_5)_(3 times 1)
+$<0-vector-cutting>
+
+== Eigenvalues and Eigenvectors
+
+Eigenvectors are vectors with a key property, multiplying them with a matrix yields a vector with the same direction but with an altered magnitude (scales the vector). Mathematically we can write this in the form shown in *@0-eigenvalue-definition*.
+
+$
+  [A]_(n times n){X}_(n times 1) = lambda {X}_(n times 1)
+$<0-eigenvalue-definition>
+
+*@0-eigenvalue-formula* can be used to find the value of the eigenvalues, which will then allow for independent solutions for the eigenvectors.
+
+$
+  |[A]_(n times n) - lambda [I]_(n times n)| = 0
+$<0-eigenvalue-formula>
+
+Note that the determinant exists here as the solution to this equation itself has to be singular. An example calculation of the eigenvalues for a $2 times 2$ matrix is shown in *@0-eigenvalue-example*.
+
+$
+  [A]_(n times n) = mat(4, 1; 1, 3) quad arrow.r quad |[A]_(n times n) - lambda [I]_(n times n)| = 0 \
+  mat(delim: "|", mat(4, 1; 1, 3) - lambda mat(1, 0; 0, 1)) = mat(delim: "|", 4-lambda, 1; 1, 3-lambda) = (4-lambda) (3-lambda) -2 = lambda^2-7lambda+10=0 \
+  lambda_1 = 5 quad quad lambda_2 = 2
+$<0-eigenvalue-example>
+
+The results for the eigenvalues can be plugged back into the following formula to yield the eigenvectors *@0-eigenvector-formula*.
+$
+  ([A]_(n times n) - lambda [I]_(n times n))[X]_(n times 1) = 0
+$<0-eigenvector-formula>
