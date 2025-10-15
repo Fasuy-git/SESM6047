@@ -373,6 +373,119 @@ $
   [A]_(i times j)^(-1) = 1/(|[A]_(i times j)|)"Adj"([A]_(i times j))
 $<0-inverse-matrix-definition>
 
-// mention singular or degenerate matrices and use the vector analogy to explain why these are an issue
+As *@0-inverse-matrix-definition* uses the reciprocal of the determinant of the matrix, it also means that the *value of the determinant cannot itself be zero*. A matrix with a determinant of zero is said to be *singular*, *degenerate* or *rank deficient*. Examples for the inverses of a $2 times 2$ matrix and a $3 times 3$ matrix are shown in *@0-inverse-2x2* and *@0-inverse-3x3* respectively.
 
-//Add example of 2x2 and 3x3 matrices
+$
+  [A]_(2 times 2)
+  = mat(a_(11), a_(12); a_(21), a_(22))_(2 times 2)
+  quad arrow.r quad
+  [A]^(-1)_(2 times 2)
+  =
+  frac(1, (a_(11)a_(22) - a_(12)a_(21)))
+  mat(
+    a_(22), -a_(12);
+    -a_(21), a_(11)
+  )_(2 times 2)
+$<0-inverse-2x2>
+
+$
+  [A]_(3 times 3)
+  =
+  mat(
+    a_(11), a_(12), a_(13);
+    a_(21), a_(22), a_(23);
+    a_(31), a_(32), a_(33)
+  )_(3 times 3)
+  \
+  [A]^(-1)_(3 times 3)
+  =
+  frac(
+    1,
+    (a_(11)(a_(22)a_(33) - a_(23)a_(32))
+      - a_(12)(a_(21)a_(33) - a_(23)a_(31))
+      + a_(13)(a_(21)a_(32) - a_(22)a_(31)))
+  ) ...\
+  ... mat(
+    (a_(22)a_(33) - a_(23)a_(32)), -(a_(12)a_(33) - a_(13)a_(32)), (a_(12)a_(23) - a_(13)a_(22));
+    -(a_(21)a_(33) - a_(23)a_(31)), (a_(11)a_(33) - a_(13)a_(31)), -(a_(11)a_(23) - a_(13)a_(21));
+    (a_(21)a_(32) - a_(22)a_(31)), -(a_(11)a_(32) - a_(12)a_(31)), (a_(11)a_(22) - a_(12)a_(21))
+  )_(3 times 3)
+$<0-inverse-3x3>
+
+== Solving Systems of Equations Using matrices
+
+Using the steps outlined before, it is possible to use matrices to solve a system of simultaneous equations. Lets say we have $n$ *linear* equations, and therefore $n$ number of unknowns, then the system of equations can be written in the form shown in *@0-system-of-equations*.
+
+$
+  cases(
+    a_(11)x_1 + a_(12)x_2 + ... + a_(1n)x_n = b_1,
+    a_(21)x_1 + a_(22)x_2 + ... + a_(2n)x_n = b_2,
+    dots.v,
+    a_(n 1)x_1 + a_(n 2)x_2 + ... + a_(n n)x_n = b_n
+  )
+$<0-system-of-equations>
+
+The system of equations shown in *@0-system-of-equations* can then bbe written in the matrix form shown in *@0-simultaneous-equations-matrix*.
+
+$
+  [A]_(n times n)[X]_(n times 1) = [B]_(n times 1)
+  \
+  "where" quad
+  [A]_(n times n)
+  = mat(
+    a_(11), a_(12), dots.h, a_(1n);
+    a_(21), a_(22), dots.h, a_(2n);
+    dots.v, dots.v, dots.down, dots.v;
+    a_(n 1), a_(n 2), dots.h, a_(n n)
+  )_(n times n)
+  [X]_(n times 1)
+  = mat(x_1; x_2; dots.v; x_n)_(n times 1)
+  quad
+  [B]_(n times 1)
+  = mat(b_1; b_2; dots.v; b_n)_(n times 1)
+$<0-simultaneous-equations-matrix>
+
+Assuming that the $[X]_(n times 1)$ matrix is the set of unknowns, then the solution of this system can be found by inverting the $[A]_(n times n)$ matrix (this can be done as $[A]_(n times n)[A]_(n times n)^(-1) = [A]_(n times n)^(-1)[A]_(n times n) = [I]_(n times n)$), the form of this expression is shown in.
+
+$
+  [X]_(n times 1) = [B]_(n times 1)[A]_(n times n)^(-1) quad quad "Given" |[A]_(n times n)| eq.not 0
+$
+
+== Matrix Zero-Padding
+
+It is possible to use many of the aforementioned tools to "pad" a matrix with zeroes, with some degree of control. Let there be a submatrix $[K]_(n times n)$ that we want to expand into a new matrix $overline(K)$ to a size $m times m$, with the $K$ matrix being in the top left of the $overline(K)$ matrix, then the multiplication shown in can be used *@0-zero-padding-general*.
+
+$
+  [K]_(n times n) = mat(
+    k_(11), k_(12), ..., k_(1j);
+    k_(21), k_(22), ..., k_(2j);
+    dots.v, dots.v, dots.down, dots.v;
+    k_(i 1), k_(i 2), ..., k_(i j)
+  )_(n times n)
+  arrow.r
+  quad
+  [overline(K)]_(n times n) = mat(
+    k_(11), k_(12), ..., 0;
+    k_(21), k_(22), ..., 0;
+    dots.v, dots.v, dots.down, dots.v;
+    0, 0, ..., 0
+  )_(m times m)
+  \
+  "Then [A] must have shape" quad quad
+  [A]_(n times m) = mat(
+    1, 0, ..., 0;
+    0, 1, ..., 0;
+    dots.v, dots.v, dots.down, dots.v;
+    0, 0, ..., 0
+  )_(n times m)
+  \
+  therefore quad
+  [overline(K)]_(n times n) = [A]_(m times n)^(T) [K]_(n times n) [A]_(n times m)
+$<0-zero-padding-general>
+
+As an example a $2 times 2$ matrix is embedded into a $5 times 5$ matrix using *@0-zero-padding-general*, this is shown in.
+
+// Add example
+// Mention how we can control movement along the diagonal by moving the 1,1 down the array
+// Mention banded matrices as well
+// Have a look at notes and see what they mean about the identuity matrix
