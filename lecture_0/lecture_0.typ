@@ -715,3 +715,5 @@ The results for the eigenvalues can be plugged back into the following formula t
 $
   ([A]_(n times n) - lambda [I]_(n times n))[X]_(n times 1) = 0
 $<0-eigenvector-formula>
+
+#pagebreak()
