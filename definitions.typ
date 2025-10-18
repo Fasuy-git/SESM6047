@@ -7,7 +7,11 @@
   align: left + horizon,
   column-gutter: 1em,
   row-gutter: 1em,
-  [*$A B A B$*], [Allahumabarik],
+  [*$Pi$*], [Total potential energy ($J$)], [*$U$*], [Stored elastic strain energy($J$)],
+  [*$V$*], [Potential energy ($J$)], [*$F$*], [Force (N)],
+  [*$k$*], [Stiffness (N/m)], [*$q$*], [Generalized degree of freedom],
+  [*$[K]$*], [Stiffness matrix], [*${q}$*], [Displacement vector],
+  [*$F$*],
 )
 
 #pagebreak()
