@@ -94,3 +94,4 @@
 
 #include "lecture_0/lecture_0.typ"
 #include "lecture_1/lecture_1.typ"
+#include "lecture_2/lecture_2.typ"

@@ -11,7 +11,6 @@
   [*$V$*], [Potential energy ($J$)], [*$F$*], [Force (N)],
   [*$k$*], [Stiffness (N/m)], [*$q$*], [Generalized degree of freedom],
   [*$[K]$*], [Stiffness matrix], [*${q}$*], [Displacement vector],
-  [*$F$*],
 )
 
 #pagebreak()

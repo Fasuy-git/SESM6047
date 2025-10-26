@@ -1,6 +1,6 @@
 #import "../template.typ": *
 
-= Lecture 1
+#lecture("Lecture 1", 1, 1)
 
 == Principle of Minimum Total Potential Energy (PMTPE)
 
@@ -205,6 +205,10 @@ Now that the scenario is defined, it is possible to write the expression for the
 
 $
   U = 1/2 k_1(q_2 - q_1)^2 quad arrow.r quad U = 1/2 vec(q_1, q_2)_(1 times 2)^T mat(k_1, -k_1; -k_1, k_1)_(2 times 2) vec(q_1, q_2)_(2 times 1)
+  \
+  U = 1/2 {q}_(1 times 2)^T [K]_(2 times 2) {q}_(2 times 1)
 $<1-strain-energy-general-spring>
 
-Note that the equation for $U$ can also be written in the matrix form shown on the left of *@1-strain-energy-general-spring*. This form can be written in shorthand as $U = 1/2 {q}_(1 times 2)^T [K]_(2 times 2){q}_(2 times 1)$.
+Note that the equation for $U$ can also be written in the matrix form shown on the left of *@1-strain-energy-general-spring*. This form can be written in shorthand as $U = 1/2 {q}_(1 times 2)^T [K]_(2 times 2){q}_(2 times 1)$. Even though *@1-strain-energy-general-spring* is written as a set of matrices, it is still a *scalar*, which makes sense as $U$ is an energy.
+
+#pagebreak()
