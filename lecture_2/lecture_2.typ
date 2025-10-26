@@ -135,10 +135,13 @@ $
   )_(2 times 2)vec(q_2, q_3)_(2 times 1) = vec(F_1, F_2)_(2 times 1)
 $<2-boundary-conditions>
 
-The assembled stiffness matrix with the boundary conditions applied shown in *@2-boundary-conditions* is no longer singular meaning that the scenario can be solved for ${q}$. The steps taken to solve any question using the finite element method and PMTPE are:
+
+Note that the *crossed out rows and columns are not deleted, just temporarily ignored* and can be re-used once a solution for ${q}$ has been obtained to get a value for $R$. The assembled stiffness matrix with the boundary conditions applied shown in *@2-boundary-conditions* is no longer singular meaning that the scenario can be solved for ${q}$. The steps taken to solve any question using the finite element method and PMTPE are:
 
 + Write expressions for the elastic strain energies $U$ and potential energies $V$ per element.
 + Combine all of the $U$s and $V$s using padding and matrix form to create a global $[K]$.
 + Apply boundary conditions to the system to make $[K]$ non-singular.
 + Use ${q} = [K]^(-1){F}$ with ${F}$ from global $V$ equation and $[K]$ from global $U$ equation.
 + Obtain solutions for ${q}$.
+
+#pagebreak()
