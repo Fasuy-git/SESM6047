@@ -67,6 +67,13 @@
   #v(1cm)
 
   #outline(
+    title: [List of Weeks],
+    target: figure.where(kind: "week"),
+  )
+
+  #v(1cm)
+
+  #outline(
     title: [List of Figures],
     target: figure.where(kind: figure),
   )
