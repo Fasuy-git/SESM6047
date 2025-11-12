@@ -26,65 +26,20 @@ The process of solving a question with elastic rods is similar to the spring sce
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    //Wall
+    wall((0, 0), 4)
 
-    wall((0, -2), b: (0, 1.5), name: "wall", inverse: true, inverse-lines: false)
+    // Rod 1 and related lengths and arrows
+    rod((0, 0), 3, 0.5, $bold(E_1),bold(A_1)$, -1, fill_color: rgb("#00b3ff"))
+    length-label(0, 0.1, 1.5, 3, $bold(L_1)$)
+    arrow-label(0, -0.1, -2, $bold(q_1)$)
+    arrow-label(3, -0.1, -2, $bold(q_2)$)
 
-    // Rectangle #1
-    rect(
-      (0, 0),
-      (3, 0.5),
-      fill: rgb("#00b3ff"),
-      stroke: black,
-    )
-
-    // Rectangle #2
-    rect(
-      (3, 0.75),
-      (6, -0.25),
-      fill: rgb("#00ffe1"),
-      stroke: black,
-    )
-
-    // Nodes
-    circle((0, 0.25), radius: .1, fill: white)
-    circle((3, 0.25), radius: .1, fill: white)
-    circle((6, 0.25), radius: .1, fill: white)
-
-    // Length lines and datums
-    line((3, 0.35), (3, 1.5))
-    line((0, 1.2), (3, 1.2), mark: (symbol: "stealth", scale: 1.5))
-    content((1.5, 1.5), $bold(L_1)$)
-
-    line((6, 0.35), (6, 1.5))
-    line((3, 1.2), (6, 1.2), mark: (symbol: "stealth", scale: 1.5))
-    content((4.5, 1.5), $bold(L_2)$)
-
-    // Rod properties labels
-    content((1.5, -0.75), $bold(E_1 "," A_1)$)
-    content((4.5, -0.75), $bold(E_2 "," A_2)$)
-
-    // q_1 line
-    line((0, -1.5), (1, -1.5))
-    mark((1.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((1.6, -1.45), $bold(q_1)$)
-
-    // q_2 line
-    line((3, 0), (3, -1.5), (4, -1.5))
-    mark((4.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((4.55, -1.45), $bold(q_2)$)
-
-    // q_3 line
-    line((6, 0), (6, -1.5), (7, -1.5))
-    mark((7.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((7.55, -1.45), $bold(q_3)$)
-
-    // Force line
-    line((6.1, 0.25), (7.1, 0.25))
-    mark((7.35, 0.25), 0deg, symbol: "stealth", scale: 1.5)
-    content((7.65, 0.25), $bold(F)$)
+    // Rod 2 and related lengths and arrows
+    rod((3, 0), 3, 1, $bold(E_2),bold(A_2)$, -1, fill_color: rgb("#00ffe1"))
+    length-label(3, 0.1, 1.5, 3, $bold(L_2)$)
+    arrow-label(6.1, -0.1, 0, $bold(F)$)
+    arrow-label(6, -0.1, -2, $bold(q_3)$)
   }),
   caption: [Scenario with two elastic rods joined together.],
   supplement: [Figure],
@@ -131,74 +86,24 @@ Like lego pieces, elastic rods and springs can be combined to simulate more comp
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    //Wall
+    wall((0, 0), 4)
 
-    wall((0, -2), b: (0, 1.5), name: "wall", inverse: true, inverse-lines: false)
+    // Rod 1 and related lengths and arrows
+    rod((0, 0), 3, 0.5, $bold(E_1),bold(A_1)$, -1, fill_color: rgb("#00b3ff"))
+    length-label(0, 0.1, 1.5, 3, $bold(L_1)$)
+    arrow-label(0, -0.1, -2, $bold(q_1)$)
+    arrow-label(3, -0.1, -2, $bold(q_2)$)
 
-    // Rectangle #1
-    rect(
-      (0, 0),
-      (3, 0.5),
-      fill: rgb("#00b3ff"),
-      stroke: black,
-    )
+    // Rod 2 and related lengths and arrows
+    rod((3, 0), 3, 1, $bold(E_2),bold(A_2)$, -1, fill_color: rgb("#00ffe1"))
+    length-label(3, 0.1, 1.5, 3, $bold(L_2)$)
+    arrow-label(6, -0.1, -1, $bold(F)$)
+    arrow-label(6, -0.1, -2, $bold(q_3)$)
 
-    // Rectangle #2
-    rect(
-      (3, 0.75),
-      (6, -0.25),
-      fill: rgb("#00ffe1"),
-      stroke: black,
-    )
-
-    // Nodes
-    circle((0, 0.25), radius: .1, fill: white)
-    circle((3, 0.25), radius: .1, fill: white)
-    circle((6, 0.25), radius: .1, fill: white)
-
-    // Length lines and datums
-    line((3, 0.35), (3, 1.5))
-    line((0, 1.2), (3, 1.2), mark: (symbol: "stealth", scale: 1.5))
-    content((1.5, 1.5), $bold(L_1)$)
-
-    line((6, 0.35), (6, 1.5))
-    line((3, 1.2), (6, 1.2), mark: (symbol: "stealth", scale: 1.5))
-    content((4.5, 1.5), $bold(L_2)$)
-
-    // Rod properties labels
-    content((1.5, -0.75), $bold(E_1 "," A_1)$)
-    content((4.5, -0.75), $bold(E_2 "," A_2)$)
-
-    // q_1 line
-    line((0, -1.5), (1, -1.5))
-    mark((1.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((1.6, -1.45), $bold(q_1)$)
-
-    // q_2 line
-    line((3, 0), (3, -1.5), (4, -1.5))
-    mark((4.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((4.55, -1.45), $bold(q_2)$)
-
-    // q_3 line
-    line((6, 0), (6, -1.5), (7, -1.5))
-    mark((7.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((7.55, -1.45), $bold(q_3)$)
-
-    // Force line
-    line((6, -0.75), (7, -0.75))
-    mark((7.25, -0.75), 0deg, symbol: "stealth", scale: 1.5)
-    content((7.55, -0.75), $bold(F)$)
-
-    // Spring
-    line((6.1, 0.25), (6.5, 0.25), stroke: orange)
-    spring((6.5, 0.25), name: "spring_1", n: 7, stroke: orange)
-    line("spring_1", (8, 0.25), stroke: orange)
-    content((7, 1), $bold(k)$, padding: 1cm)
-
-    // RHS wall
-    wall((8, -2), b: (8, 1.5), name: "wall", inverse: false, inverse-lines: true)
+    // Spring and wall
+    wall((8, 0), 4, flipped_and_reversed: true)
+    spring((6, 0), 2, 0.5, 4, $bold(k)$, content_y_shift: 1.75, color: orange)
   }),
   caption: [Scenario with two elastic rods joined together with a lumped spring.],
   supplement: [Figure],
@@ -222,80 +127,26 @@ Note that the only difference here is the stiffness in the bottom right cell. Al
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    //Wall
+    wall((0, 0), 4)
 
-    // Walls
-    wall((0, -2), b: (0, 1.5), name: "wall", inverse: true, inverse-lines: false)
-    wall((8, -2), b: (8, 1.5), name: "wall", inverse: false, inverse-lines: true)
+    // Rod 1 and related lengths and arrows
+    rod((0, 0), 3, 0.5, $bold(E_1),bold(A_1)$, -1, fill_color: rgb("#00b3ff"))
+    length-label(0, 0.1, 1.5, 3, $bold(L_1)$)
+    arrow-label(0, -0.1, -2, $bold(q_1)$)
+    arrow-label(3, -0.1, -2, $bold(q_2)$)
 
-    // Rectangle #1
-    rect(
-      (0, 0),
-      (3, 0.5),
-      fill: rgb("#00b3ff"),
-      stroke: black,
-    )
-    content((1.5, -0.75), $bold(E_1 "," A_1)$)
+    // Spring and wall
+    spring((3, 0), 2, 0.5, 4, $bold(k)$, content_y_shift: 1.75, color: orange)
 
-    // Rectangle #1 Nodes
-    circle((0, 0.25), radius: .1, fill: white)
-    circle((3, 0.25), radius: .1, fill: white)
 
-    // Rectangle #1 length line and datums
-    line((3, 0.35), (3, 1.5))
-    line((0, 1.2), (3, 1.2), mark: (symbol: "stealth", scale: 1.5))
-    content((1.5, 1.5), $bold(L_1)$)
-
-    // q_1 line
-    line((0, -1.5), (1, -1.5))
-    mark((1.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((1.6, -1.45), $bold(q_1)$)
-
-    // q_2 line
-    line((3, 0), (3, -1.5), (4, -1.5))
-    mark((4.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((4.55, -1.45), $bold(q_2)$)
-
-    // Spring
-    line((3.1, 0.25), (3.5, 0.25), stroke: orange)
-    spring((3.5, 0.25), name: "spring_1", n: 7, stroke: orange)
-    line("spring_1", (5, 0.25), stroke: orange)
-    content((4, 1), $bold(k)$, padding: 1cm)
-
-    // Rectangle #2
-    rect(
-      (5, 0.75),
-      (8, -0.25),
-      fill: rgb("#00ffe1"),
-      stroke: black,
-    )
-    content((6.5, -0.75), $bold(E_2 "," A_2)$)
-
-    // Rectangle #2 Nodes
-    circle((5, 0.25), radius: .1, fill: white)
-    circle((8, 0.25), radius: .1, fill: white)
-
-    // Rectangle #2 length line and datums
-    line((5, 0.35), (5, 1.5))
-    line((5, 1.2), (8, 1.2), mark: (symbol: "stealth", scale: 1.5))
-    content((6.5, 1.5), $bold(L_2)$)
-
-    // q_3 line
-    line((5, 0), (5, -1.5), (6, -1.5))
-    mark((6.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((6.55, -1.45), $bold(q_3)$)
-
-    // Force line
-    line((5, 0), (5, -2.5), (6, -2.5))
-    mark((6.25, -2.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((6.55, -2.45), $bold(F)$)
-
-    // q_4 line
-    line((8, -1.5), (9, -1.5))
-    mark((9.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((9.55, -1.45), $bold(q_4)$)
+    // Rod 2 and related lengths and arrows
+    wall((8, 0), 4, flipped_and_reversed: true)
+    rod((5, 0), 3, 1, $bold(E_2),bold(A_2)$, -1, fill_color: rgb("#00ffe1"))
+    length-label(5, 0.1, 1.5, 3, $bold(L_2)$)
+    arrow-label(5, -0.1, -1.5, $bold(F)$)
+    arrow-label(5, -0.1, -2.5, $bold(q_3)$)
+    arrow-label(8, -0.1, -2.5, $bold(q_4)$)
   }),
   caption: [Scenario with two elastic rods joined together with a lumped spring.],
   supplement: [Figure],
@@ -324,70 +175,13 @@ To extend the functionality of the elastic rod, imagine a distributed load appli
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    // Spring and Wall
+    wall((0, 0), 4)
+    spring((0, 0), 3, 0.5, 5, $bold(k)$)
 
-    wall((0, -2), b: (0, 3), name: "wall", inverse: true, inverse-lines: false)
-
-    // Rectangle #1
-    rect(
-      (0, 0),
-      (3, 0.5),
-      fill: rgb("#00b3ff"),
-      stroke: black,
-    )
-
-    // Rectangle #2
-    rect(
-      (3, 0.75),
-      (6, -0.25),
-      fill: rgb("#00ffe1"),
-      stroke: black,
-    )
-
-    // Nodes
-    circle((0, 0.25), radius: .1, fill: white)
-    circle((3, 0.25), radius: .1, fill: white)
-    circle((6, 0.25), radius: .1, fill: white)
-
-    // Length lines and datums
-    line((3, 0.35), (3, 2.5))
-    line((0, 2.2), (3, 2.2), mark: (symbol: "stealth", scale: 1.5))
-    content((1.5, 2.5), $bold(L_1)$)
-
-    line((6, 0.35), (6, 2.5))
-    line((3, 2.2), (6, 2.2), mark: (symbol: "stealth", scale: 1.5))
-    content((4.5, 2.5), $bold(L_2)$)
-
-    // Rod properties labels
-    content((1.5, -0.75), $bold(E_1 "," A_1)$)
-    content((4.5, -0.75), $bold(E_2 "," A_2)$)
-
-    // q_1 line
-    line((0, -1.5), (1, -1.5))
-    mark((1.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((1.6, -1.45), $bold(q_1)$)
-
-    // q_2 line
-    line((3, 0), (3, -1.5), (4, -1.5))
-    mark((4.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((4.55, -1.45), $bold(q_2)$)
-
-    // q_3 line
-    line((6, 0), (6, -1.5), (7, -1.5))
-    mark((7.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((7.55, -1.45), $bold(q_3)$)
-
-    // Distributed force P0
-    let distributed-force(n, x_0, y_0, string) = {
-      for i in range(0, n) {
-        line((x_0 + 0.75 * i, y_0), ((x_0 + 0.5) + 0.75 * i, y_0), ((x_0 + 0.25) + 0.75 * i, y_0 + 0.1))
-      }
-      content(((x_0 + x_0 + 0.75 * n) / 2, y_0 + 0.5), string)
-    }
-
-    distributed-force(4, 3.1, 0.9, $bold(p_0)$)
+    // RHS node arrows
+    arrow-label(3.1, 0, 0, $bold(F)$, color: red)
+    arrow-label(3, -0.1, -1.5, $bold(q)$, color: blue)
   }),
   caption: [Scenario with two elastic rods joined together with a distributed force applied to one of the rods.],
   supplement: [Figure],
@@ -487,76 +281,23 @@ This definition can easily be expanded for more complex loading cases. Take the 
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    //Wall
+    wall((0, 0), 5)
 
-    wall((0, -2), b: (0, 3), name: "wall", inverse: true, inverse-lines: false)
+    // Rod 1 and related lengths and arrows
+    rod((0, 0), 3, 0.5, $bold(E_1),bold(A_1)$, -1, fill_color: rgb("#00b3ff"))
+    length-label(0, 0.1, 2, 3, $bold(L_1)$)
+    arrow-label(0, -0.1, -2, $bold(q_1)$)
+    arrow-label(3, -0.1, -2, $bold(q_2)$)
 
-    // Rectangle #1
-    rect(
-      (0, 0),
-      (3, 0.5),
-      fill: rgb("#00b3ff"),
-      stroke: black,
-    )
+    // Rod 2 and related lengths and arrows
+    rod((3, 0), 3, 1, $bold(E_2),bold(A_2)$, -1, fill_color: rgb("#00ffe1"))
+    length-label(3, 0.1, 2, 3, $bold(L_2)$)
+    arrow-label(6.1, -0.1, 0, $bold(F)$)
+    arrow-label(6, -0.1, -2, $bold(q_3)$)
 
-    // Rectangle #2
-    rect(
-      (3, 0.75),
-      (6, -0.25),
-      fill: rgb("#00ffe1"),
-      stroke: black,
-    )
-
-    // Nodes
-    circle((0, 0.25), radius: .1, fill: white)
-    circle((3, 0.25), radius: .1, fill: white)
-    circle((6, 0.25), radius: .1, fill: white)
-
-    // Length lines and datums
-    line((3, 0.35), (3, 2.5))
-    line((0, 2.2), (3, 2.2), mark: (symbol: "stealth", scale: 1.5))
-    content((1.5, 2.5), $bold(L_1)$)
-
-    line((6, 0.35), (6, 2.5))
-    line((3, 2.2), (6, 2.2), mark: (symbol: "stealth", scale: 1.5))
-    content((4.5, 2.5), $bold(L_2)$)
-
-    // Rod properties labels
-    content((1.5, -0.75), $bold(E_1 "," A_1)$)
-    content((4.5, -0.75), $bold(E_2 "," A_2)$)
-
-    // q_1 line
-    line((0, -1.5), (1, -1.5))
-    mark((1.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((1.6, -1.45), $bold(q_1)$)
-
-    // q_2 line
-    line((3, 0), (3, -1.5), (4, -1.5))
-    mark((4.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((4.55, -1.45), $bold(q_2)$)
-
-    // applied force
-    line((3, 0), (3, -2.5), (4, -2.5))
-    mark((4.25, -2.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((4.55, -2.5), $bold(F)$)
-
-
-    // q_3 line
-    line((6, 0), (6, -1.5), (7, -1.5))
-    mark((7.25, -1.5), 0deg, symbol: "stealth", scale: 1.5)
-    content((7.55, -1.45), $bold(q_3)$)
-
-    // Distributed force P0
-    let distributed-force(n, x_0, y_0, string) = {
-      for i in range(0, n) {
-        line((x_0 + 0.75 * i, y_0), ((x_0 + 0.5) + 0.75 * i, y_0), ((x_0 + 0.25) + 0.75 * i, y_0 + 0.1))
-      }
-      content(((x_0 + x_0 + 0.75 * n) / 2, y_0 + 0.5), string)
-    }
-
-    distributed-force(4, 3.1, 0.9, $bold(p_0)$)
+    // Distributed force
+    distributed-force(4, 3.1, 0.6, $bold(p_0)$)
   }),
   caption: [Scenario with two elastic rods joined together with a distributed force applied to one of the rods.],
   supplement: [Figure],
@@ -585,91 +326,27 @@ As an example of the process to fully solve a complex elastic rod type question,
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    // LHS Wall
+    wall((0, 0), 4)
 
-    // === Defined Functions for Images===
+    // First rod, lengths and arrows
+    rod((0, 0), 3, 0.5, "", 0, fill_color: rgb("#00ffe1"), node_1: false, node_2: false)
+    length-label(0, 0, 1.5, 3, $bold(L"/"4)$)
+    arrow-label(3, -0.1, -1.5, $bold(P)$)
+
+    // Second rod, lengths and arrows
+    rod((3, 0), 3, 0.5, "", 0, fill_color: rgb("#00ffe1"), node_1: false, node_2: false)
+    length-label(3, 0, 1.5, 3, $bold(L"/"4)$)
+
+    // 3rd rod, lengths and arrows
+    rod((6, 0), 6, 0.5, "", 0, fill_color: rgb("#00ffe1"), node_1: false, node_2: false)
+    length-label(6, 0, 1.5, 6, $bold(L"/"2)$)
 
     // Distributed force
-    let distributed-force(n, x_0, y_0, string) = {
-      for i in range(0, n) {
-        line((x_0 + 0.75 * i, y_0), ((x_0 + 0.5) + 0.75 * i, y_0), ((x_0 + 0.25) + 0.75 * i, y_0 + 0.1))
-      }
-      content(((x_0 + x_0 + 0.75 * n) / 2, y_0 + 0.5), string)
-    }
+    distributed-force(8, 6.1, 0.35, $bold(p_0)$)
 
-    // Arrow and Marker
-    let arrow-label(x_0, y_0, y_1, content-string, x_padding: 0.25, y_padding: 0.2, length: 1) = {
-      line((x_0, y_0), (x_0, y_1), (x_0 + length, y_1))
-      mark((x_0 + length + 0.25, y_1), 0deg, symbol: "stealth", scale: 1.5)
-      content((x_0 + length + 0.25 + x_padding, y_1 + y_padding), content-string)
-    }
-
-    // Length
-    let length-label(
-      x_0,
-      y_0,
-      y_1,
-      length,
-      content-string,
-      line-offset: 0.25,
-      y-padding: 0.25,
-      inner: true,
-      arrow-length: 1,
-    ) = {
-      line((x_0, y_0), (x_0, y_1))
-      line((x_0 + length, y_0), (x_0 + length, y_1))
-      if inner {
-        line((x_0, y_1 - line-offset), (x_0 + length, y_1 - line-offset), mark: (symbol: "stealth", scale: 1.5))
-      } else {
-        mark((x_0, y_1 - line-offset), 0deg, symbol: ">", scale: 1.5)
-        line((x_0 - 0.35, y_1 - line-offset), (x_0 - arrow-length, y_1 - line-offset))
-
-        mark((x_0 + length, y_1 - line-offset), 180deg, symbol: ">", scale: 1.5)
-        line((x_0 + length + 0.35, y_1 - line-offset), (x_0 + arrow-length + length, y_1 - line-offset))
-      }
-      content((x_0 + length / 2, y_1 - line-offset + y-padding), content-string)
-    }
-
-    let elastic-rod(
-      x_0,
-      height,
-      length,
-      fill-color: rgb("#00ffe1"),
-      content-string,
-      y-offset: 0,
-      y-content-padding: -0.5,
-      length-label-offset: 0.5,
-      length-label-content: "",
-    ) = {
-      rect(
-        (x_0, height / 2 + y-offset),
-        (x_0 + length, -height / 2 + y-offset),
-        fill: fill-color,
-        stroke: black,
-      )
-      //circle((x_0, 0 + y-offset), radius: .1, fill: white)
-      //circle((x_0 + length, 0 + y-offset), radius: .1, fill: white)
-      content(((x_0 + length) / 2, -height / 2 + y-content-padding + y-offset), content-string)
-    }
-
-    wall((0, -2), b: (0, 2), name: "wall", inverse: true, inverse-lines: false)
-    wall((12, -2), b: (12, 2), name: "wall", inverse: false, inverse-lines: true)
-
-    let beam-length = 3
-    let beam-height = 0.5
-    elastic-rod(0, beam-height, beam-length, $$)
-    length-label(0, 0, beam-height / 2 + 1.5, beam-length, $bold(L"/"4)$)
-
-    elastic-rod(3, beam-height, beam-length, $$)
-    length-label(3, 0, beam-height / 2 + 1.5, beam-length, $bold(L"/"4)$)
-
-    elastic-rod(6, beam-height, beam-length + 3, $$)
-    length-label(6, 0, beam-height / 2 + 1.5, beam-length + 3, $bold(L"/"2)$)
-
-    arrow-label(3, 0, -1.5, $P$)
-    distributed-force(8, 6.1, 0.5, $bold(p_0)$)
+    // RHS Wall
+    wall((12, 0), 4, flipped_and_reversed: true)
   }),
   caption: [Complex elastic rod scenario],
   supplement: [Figure],
@@ -680,99 +357,34 @@ Currently *@4-complex-elastic-rod-question* is not an FE scenario yet, to make i
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    // Walls
+    wall((0, 0), 5)
+    wall((12, 0), 5, flipped_and_reversed: true)
 
-    // === Defined Functions for Images===
+    //LHS Wall arrows
+    arrow-label(0, -0.1, -1.5, $bold(R_L)$)
+    arrow-label(0, -0.1, -2.5, $bold(q_1)$)
+
+    // First rod, lengths and arrows
+    rod((0, 0), 3, 0.5, "", 0, fill_color: rgb("#00ffe1"))
+    length-label(0, 0.1, 1.5, 3, $bold(L"/"4)$)
+    arrow-label(3, -0.1, -1.5, $bold(P)$)
+    arrow-label(3, -0.1, -2.5, $bold(q_2)$)
+
+    // Second rod, lengths and arrows
+    rod((3, 0), 3, 0.5, "", 0, fill_color: rgb("#00ffe1"))
+    length-label(3, 0.1, 1.5, 3, $bold(L"/"4)$)
+    arrow-label(6, -0.1, -1.5, $bold(P_(0 L))$)
+    arrow-label(6, -0.1, -2.5, $bold(q_3)$)
+
+    // 3rd rod, lengths and arrows
+    rod((6, 0), 6, 0.5, "", 0, fill_color: rgb("#00ffe1"))
+    length-label(6, 0.1, 1.5, 6, $bold(L"/"2)$)
+    arrow-label(12, -0.1, -1.5, $bold(R_R)$)
+    arrow-label(12, -0.1, -2.5, $bold(q_4)$)
 
     // Distributed force
-    let distributed-force(n, x_0, y_0, string) = {
-      for i in range(0, n) {
-        line((x_0 + 0.75 * i, y_0), ((x_0 + 0.5) + 0.75 * i, y_0), ((x_0 + 0.25) + 0.75 * i, y_0 + 0.1))
-      }
-      content(((x_0 + x_0 + 0.75 * n) / 2, y_0 + 0.5), string)
-    }
-
-    // Arrow and Marker
-    let arrow-label(x_0, y_0, y_1, content-string, x_padding: 0.25, y_padding: 0.2, length: 1) = {
-      line((x_0, y_0), (x_0, y_1), (x_0 + length, y_1))
-      mark((x_0 + length + 0.25, y_1), 0deg, symbol: "stealth", scale: 1.5)
-      content((x_0 + length + 0.25 + x_padding, y_1 + y_padding), content-string)
-    }
-
-    // Length
-    let length-label(
-      x_0,
-      y_0,
-      y_1,
-      length,
-      content-string,
-      line-offset: 0.25,
-      y-padding: 0.25,
-      inner: true,
-      arrow-length: 1,
-    ) = {
-      line((x_0, y_0), (x_0, y_1))
-      line((x_0 + length, y_0), (x_0 + length, y_1))
-      if inner {
-        line((x_0, y_1 - line-offset), (x_0 + length, y_1 - line-offset), mark: (symbol: "stealth", scale: 1.5))
-      } else {
-        mark((x_0, y_1 - line-offset), 0deg, symbol: ">", scale: 1.5)
-        line((x_0 - 0.35, y_1 - line-offset), (x_0 - arrow-length, y_1 - line-offset))
-
-        mark((x_0 + length, y_1 - line-offset), 180deg, symbol: ">", scale: 1.5)
-        line((x_0 + length + 0.35, y_1 - line-offset), (x_0 + arrow-length + length, y_1 - line-offset))
-      }
-      content((x_0 + length / 2, y_1 - line-offset + y-padding), content-string)
-    }
-
-    let elastic-rod(
-      x_0,
-      height,
-      length,
-      fill-color: rgb("#00ffe1"),
-      content-string,
-      y-offset: 0,
-      y-content-padding: -0.5,
-      length-label-offset: 0.5,
-      length-label-content: "",
-    ) = {
-      rect(
-        (x_0, height / 2 + y-offset),
-        (x_0 + length, -height / 2 + y-offset),
-        fill: fill-color,
-        stroke: black,
-      )
-      circle((x_0, 0 + y-offset), radius: .1, fill: white)
-      circle((x_0 + length, 0 + y-offset), radius: .1, fill: white)
-      content(((x_0 + length) / 2, -height / 2 + y-content-padding + y-offset), content-string)
-    }
-
-    wall((0, -2), b: (0, 2), name: "wall", inverse: true, inverse-lines: false)
-    wall((12, -2), b: (12, 2), name: "wall", inverse: false, inverse-lines: true)
-
-    let beam-length = 3
-    let beam-height = 0.5
-    arrow-label(0, 0, -1, $bold(R_L)$, x_padding: 0.4, y_padding: 0.1)
-    arrow-label(0, 0, -2, $bold(q_1)$, x_padding: 0.4, y_padding: 0.1)
-    length-label(0, 0, beam-height / 2 + 1.5, beam-length, $bold(L"/"4)$)
-    elastic-rod(0, beam-height, beam-length, $$)
-
-    arrow-label(3, 0, -1, $bold(P)$, x_padding: 0.4, y_padding: 0.1)
-    arrow-label(3, 0, -2, $bold(q_2)$, x_padding: 0.4, y_padding: 0.1)
-    length-label(3, 0, beam-height / 2 + 1.5, beam-length, $bold(L"/"4)$)
-    elastic-rod(3, beam-height, beam-length, $$)
-
-    arrow-label(6, 0, -1, $bold(P_(0L))$, x_padding: 0.4, y_padding: 0.1)
-    arrow-label(6, 0, -2, $bold(q_3)$, x_padding: 0.4, y_padding: 0.1)
-
-    arrow-label(12, 0, -1, $bold(R_(R))$, x_padding: 0.4, y_padding: 0.1)
-    arrow-label(12, 0, -2, $bold(q_4)$, x_padding: 0.4, y_padding: 0.1)
-    length-label(6, 0, beam-height / 2 + 1.5, beam-length + 3, $bold(L"/"2)$)
-    elastic-rod(6, beam-height, beam-length + 3, $$)
-
-    distributed-force(8, 6.1, 0.5, $bold(p_0)$)
+    distributed-force(8, 6.1, 0.35, $bold(p_0)$)
   }),
   caption: [Complex elastic rod scenario broken down using FE.],
   supplement: [Figure],
@@ -841,3 +453,5 @@ After solving for the displacements, its possible to further solve for the stres
 )
 
 Notice that the strain is the derivative of the displacement curve. Further note that for both plots, increasing the number of nodes within the section with the distributed force gets closer and closer to a smooth curve, this is because the force of the distributed load is only being approximated to be at the nodes.
+
+#pagebreak()

@@ -28,27 +28,15 @@ We can apply PMTPE to a 1D spring in order to yield the equation $F = k q$. To s
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    // Spring and Wall
+    wall((0, 0), 4)
+    spring((0, 0), 3, 0.5, 5, $bold(k)$)
 
-    spring((5.5, 0), name: "spring", n: 7)
-    wall((5, -1), b: (5, 1), name: "wall", inverse: true, inverse-lines: false)
-    circle((7, 0), radius: 0.1, name: "end-node")
-
-    line("spring", "wall")
-    line("spring", "end-node")
-    line("end-node", (9, 0), stroke: blue)
-    line("end-node", (7, -1.5), (9, -1.5), stroke: red)
-
-    mark((9.4, 0), 0deg, symbol: "stealth", scale: 2, stroke: blue)
-    mark((9.4, -1.5), 0deg, symbol: "stealth", scale: 2, stroke: red)
-
-    content("spring.bottom", $k$)
-    content((8, -0.3), $F$)
-    content((8, -1.8), $q$)
+    // RHS node arrows
+    arrow-label(3.1, 0, 0, $bold(F)$, color: red)
+    arrow-label(3, -0.1, -1.5, $bold(q)$, color: blue)
   }),
-  caption: [General 1D spring attatched to wall.],
+  caption: [General 1D spring attached to wall.],
   supplement: [Figure],
   kind: figure,
 )<1-1d-spring-diagram>
@@ -68,7 +56,7 @@ $<1-1d-spring-total-energy>
 PMTPE implies that the true solution for the equation is given when the expression for the total potential energy is derived and then set to zero, this is shown in *@1-deformation-spring*.
 
 $
-  (diff Pi(q))/(diff q) = 0 quad arrow.r quad (diff Pi(q))/(diff q) = 1/2 k times 2 q - F =0
+  (partial Pi(q))/(partial q) = 0 quad arrow.r quad (partial Pi(q))/(partial q) = 1/2 k times 2 q - F =0
   \
   F = k q
 $<1-deformation-spring>
@@ -79,44 +67,18 @@ Similarly to when we had one spring, we can apply PMTPE to two springs joined to
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    // Wall
+    wall((0, 0), 4)
 
-    spring((0.5, 0), name: "spring_1", n: 7, stroke: red)
-    spring((2.5, 0), name: "spring_2", n: 7, stroke: blue)
+    // Spring one and related arrows
+    spring((0, 0), 3, 0.5, 5, $bold(k_1)$)
+    arrow-label(3, -0.1, -1.5, $bold(F_1)$, color: red)
+    arrow-label(3, -0.1, -2.5, $bold(q_1)$, color: red)
 
-    wall((0, -1), b: (0, 1), name: "wall", inverse: true, inverse-lines: false)
-
-    circle((2, 0), radius: 0.1, name: "node_1", stroke: red)
-    circle((4, 0), radius: 0.1, name: "node_2", stroke: blue)
-
-    line("spring_1", "wall", stroke: red)
-    line("spring_1", "node_1", stroke: red)
-
-    line("node_1", "spring_2", stroke: blue)
-    line("spring_2", "node_2", stroke: blue)
-
-    line("node_1", (2, -1.2), (3, -1.2), stroke: red)
-    line("node_1", (2, -2.4), (3, -2.4), stroke: red)
-
-    mark((3.4, -1.2), 0deg, symbol: "stealth", scale: 2, stroke: red)
-    mark((3.4, -2.4), 0deg, symbol: "stealth", scale: 2, stroke: red)
-
-    line("node_2", (4, -1.2), (5, -1.2), stroke: blue)
-    line("node_2", (4, -2.4), (5, -2.4), stroke: blue)
-
-    mark((5.4, -1.2), 0deg, symbol: "stealth", scale: 2, stroke: blue)
-    mark((5.4, -2.4), 0deg, symbol: "stealth", scale: 2, stroke: blue)
-
-    content((1.1, -0.6), $k_1$)
-    content((3.1, -0.6), $k_2$)
-
-    content((2.7, -1.7), $F_1$)
-    content((2.7, -2.8), $q_1$)
-
-    content((4.7, -1.7), $F_2$)
-    content((4.7, -2.8), $q_2$)
+    // Spring two and related arrows
+    spring((3, 0), 3, 0.5, 5, $bold(k_2)$)
+    arrow-label(6, -0.1, -1.5, $bold(F_2)$, color: blue)
+    arrow-label(6, -0.1, -2.5, $bold(q_2)$, color: blue)
   }),
   caption: [Two 1D spring attached to one another and a wall.],
   supplement: [Figure],
@@ -136,10 +98,10 @@ $<1-total-energy-2-springs>
 Note that in *@1-total-energy-2-springs*, the strain energy for the second spring has a subtracted $q_1$ term within it, this is due to the displacement $q_2$ being offset by $q_1$ when spring 1 is deformed. The solution to *@1-total-energy-2-springs* can be found by applying the PMTPE and deriving with respect to the unknown deformation variable, these steps are shown in *@1-simultaneous-2-springs*.
 
 $
-  (diff Pi)/ (diff q_1) = k_1 q_1 + k_2 (q_2 -q_1) - F_1 = 0
+  (partial Pi)/ (partial q_1) = k_1 q_1 + k_2 (q_2 -q_1) - F_1 = 0
   quad arrow.r quad F_1 = (k_1 + k_2)q_1 + k_2 q_2
   \
-  (diff Pi)/ (diff q_2) = 0 + k_2(q_2 -q_1) -F_2 = 0
+  (partial Pi)/ (partial q_2) = 0 + k_2(q_2 -q_1) -F_2 = 0
   quad arrow.r quad F_2 = -k_2 q_1 + k_2 q_2
 $<1-simultaneous-2-springs>
 
@@ -164,37 +126,16 @@ More useful than the previous two examples, we can derive an expression for the 
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    // Spring
+    spring((0, 0), 3, 0.5, 5, $bold(k)$)
 
-    spring((0.5, 0), name: "spring_1", n: 7)
+    // Arrows for lhs node
+    arrow-label(0, -0.1, -1.5, $bold(F_1)$, color: red)
+    arrow-label(0, -0.1, -2.5, $bold(q_1)$, color: red)
 
-    circle((0, 0), radius: 0.1, name: "node_1", stroke: red)
-    circle((2, 0), radius: 0.1, name: "node_2", stroke: blue)
-
-    line("spring_1", "node_1")
-    line("spring_1", "node_2")
-
-    line("node_1", (0, -1.2), (1, -1.2), stroke: red)
-    line("node_1", (0, -2.4), (1, -2.4), stroke: red)
-
-    mark((1.4, -1.2), 0deg, symbol: "stealth", scale: 2, stroke: red)
-    mark((1.4, -2.4), 0deg, symbol: "stealth", scale: 2, stroke: red)
-
-    line("node_2", (2, -1.2), (3, -1.2), stroke: blue)
-    line("node_2", (2, -2.4), (3, -2.4), stroke: blue)
-
-    mark((3.4, -1.2), 0deg, symbol: "stealth", scale: 2, stroke: blue)
-    mark((3.4, -2.4), 0deg, symbol: "stealth", scale: 2, stroke: blue)
-
-    content((1.1, -0.6), $k_1$)
-
-    content((0.7, -1.7), $F_1$)
-    content((0.7, -2.8), $q_1$)
-
-    content((2.7, -1.7), $F_2$)
-    content((2.7, -2.8), $q_2$)
+    // Arrows for rhs node
+    arrow-label(3, -0.1, -1.5, $bold(F_2)$, color: blue)
+    arrow-label(3, -0.1, -2.5, $bold(q_2)$, color: blue)
   }),
   caption: [Entirely general 1D spring attached in free space.],
   supplement: [Figure],

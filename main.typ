@@ -1,5 +1,5 @@
 //Import all libraries from template file
-#import "template.typ": *
+#import "template.typ": equate, total-words, word-count
 
 // LaTex-ify the Typst
 #set page(margin: 1in)
@@ -20,7 +20,6 @@
 #v(1fr)
 
 #line(length: 100%)
-
 
 #align(left)[
   Author: Yusaf Sultan \
@@ -94,7 +93,7 @@
 #show: equate.with(breakable: true, sub-numbering: true)
 #set math.equation(numbering: "(1.1)", supplement: [Eq.])
 
-#set heading(numbering: (n1, ..x) => numbering("1.", n1 - 1, ..x))
+#set heading(numbering: (n1, ..x) => numbering("1.", calc.max(0, n1 - 1), ..x))
 
 #set math.vec(delim: "{")
 #set math.mat(delim: "[")
@@ -104,3 +103,4 @@
 #include "lecture_2/lecture_2.typ"
 #include "lecture_3/lecture_3.typ"
 #include "lecture_4/lecture_4.typ"
+#include "lecture_5/lecture_5.typ"

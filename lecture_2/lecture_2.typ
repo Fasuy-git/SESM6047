@@ -8,54 +8,20 @@ The finite element method allows for the simplification of complex problems by *
 
 #figure(
   cetz.canvas({
-    import "@preview/mechanical-system-cetz-34j:0.1.0": spring, wall
-    import cetz.draw: *
-    import circuiteria: *
+    // Wall and related arrows
+    wall((0, 0), 4)
+    arrow-label(0, 0, -1.5, $bold(R)$)
+    arrow-label(0, 0, -2.5, $bold(q_1)$)
 
-    spring((0.5, 0), name: "spring_1", n: 7, stroke: red)
-    spring((2.5, 0), name: "spring_2", n: 7, stroke: blue)
+    // Spring one and related arrows
+    spring((0, 0), 3, 0.5, 5, $bold(k_1)$)
+    arrow-label(3, -0.1, -1.5, $bold(F_1)$, color: red)
+    arrow-label(3, -0.1, -2.5, $bold(q_2)$, color: red)
 
-    wall((0, -1), b: (0, 1), name: "wall_top", inverse: true, inverse-lines: false)
-
-    wall((0, -3), b: (0, -1.), name: "wall_bottom", inverse: true, inverse-lines: false)
-
-    circle((2, 0), radius: 0.1, name: "node_1", stroke: red)
-    circle((4, 0), radius: 0.1, name: "node_2", stroke: blue)
-
-    line("spring_1", "wall_top", stroke: red)
-    line("spring_1", "node_1", stroke: red)
-
-    line("node_1", "spring_2", stroke: blue)
-    line("spring_2", "node_2", stroke: blue)
-
-    line("node_1", (2, -1.2), (3, -1.2), stroke: red)
-    line("node_1", (2, -2.4), (3, -2.4), stroke: red)
-
-    mark((3.4, -1.2), 0deg, symbol: "stealth", scale: 2, stroke: red)
-    mark((3.4, -2.4), 0deg, symbol: "stealth", scale: 2, stroke: red)
-
-    line("node_2", (4, -1.2), (5, -1.2), stroke: blue)
-    line("node_2", (4, -2.4), (5, -2.4), stroke: blue)
-
-    mark((5.4, -1.2), 0deg, symbol: "stealth", scale: 2, stroke: blue)
-    mark((5.4, -2.4), 0deg, symbol: "stealth", scale: 2, stroke: blue)
-
-    content((1.1, -0.6), $k_1$)
-    content((3.1, -0.6), $k_2$)
-
-    content((2.7, -1.7), $F_1$)
-    content((2.7, -2.8), $q_2$)
-
-    content((4.7, -1.7), $F_2$)
-    content((4.7, -2.8), $q_3$)
-
-    line((0, -1.2), (1, -1.2))
-    mark((1.4, -1.2), 0deg, symbol: "stealth", scale: 2)
-    content((0.7, -1.7), $R$)
-
-    line((0, -2.4), (1, -2.4))
-    mark((1.4, -2.4), 0deg, symbol: "stealth", scale: 2)
-    content((0.7, -2.8), $q_1$)
+    // Spring two and related arrows
+    spring((3, 0), 3, 0.5, 5, $bold(k_2)$)
+    arrow-label(6, -0.1, -1.5, $bold(F_3)$, color: blue)
+    arrow-label(6, -0.1, -2.5, $bold(q_2)$, color: blue)
   }),
   caption: [Two 1D springs attached to one another and a wall with boundary conditions defined.],
   supplement: [Figure],
@@ -94,7 +60,7 @@ $
   V = - mat(delim: "{", R, F_1, F_2)_(1 times 3) vec(q_1, q_2, q_3)_(3 times 1) = -{F}_(1 times 3)^T {q}_(3 times 1)
 $<2-potential-energy>
 
-Note that *@2-potential-energy* is still a scalar value which makes sense as $V$ is an energy. At this point the PMTPE condition can be applied, $(diff Pi(q_i)) / (diff q_i)$, to obtain a solution. Alternatively, the *governing equation of equilibrium* can be applied the system to obtain a solution, shown in *@2-governing-eq-equilibrium*.
+Note that *@2-potential-energy* is still a scalar value which makes sense as $V$ is an energy. At this point the PMTPE condition can be applied, $(partial Pi(q_i)) / (partial q_i)$, to obtain a solution. Alternatively, the *governing equation of equilibrium* can be applied the system to obtain a solution, shown in *@2-governing-eq-equilibrium*.
 
 $
   [K]{q} = {F} quad arrow.r quad mat(k_1, -k_1, 0; -k_1, k_1 + k_2, -k_2; 0, -k_2, k_2)_(3 times 3)vec(q_1, q_2, q_3)_(3 times 1) = vec(R, F_1, F_2)_(3 times 1)
