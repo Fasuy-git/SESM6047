@@ -3,8 +3,8 @@
 #import "@preview/equate:0.3.2": equate
 
 #import "@preview/cetz:0.4.2"
-
-#import "@preview/cetz:0.4.2"
+#import "@preview/cetz:0.4.2": canvas, draw
+#import "@preview/cetz-plot:0.1.3": plot
 #import cetz.draw
 
 #let lecture(title, level, week-num) = {
@@ -126,6 +126,7 @@
   content-string,
   line-offset: 0.25,
   y-padding: 0.25,
+  x-padding: 0,
   inner: true,
   arrow-length: 1,
   color: black,
@@ -169,7 +170,7 @@
   }
 
   cetz.draw.content(
-    (x_0 + length / 2, y_1 - line-offset + y-padding),
+    (x_0 + length / 2 + x-padding, y_1 - line-offset + y-padding),
     text(fill: color)[#content-string],
   )
 }
@@ -197,7 +198,8 @@
   content_string,
   content_string_y,
   content_string_x_shift: 0,
-  fill_color: white,
+  fill_color: rgb("#00ffe1"),
+  node_radi: 0.1,
   node_1: true,
   node_2: true,
 ) = {
@@ -211,6 +213,6 @@
   )
 
   // Place nodes if true
-  if node_1 { cetz.draw.circle(point_0, radius: 0.1, fill: white) }
-  if node_2 { cetz.draw.circle((x0 + length, y0), radius: 0.1, fill: white) }
+  if node_1 { cetz.draw.circle(point_0, radius: node_radi, fill: white) }
+  if node_2 { cetz.draw.circle((x0 + length, y0), radius: node_radi, fill: white) }
 }

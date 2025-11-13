@@ -175,13 +175,23 @@ To extend the functionality of the elastic rod, imagine a distributed load appli
 
 #figure(
   cetz.canvas({
-    // Spring and Wall
-    wall((0, 0), 4)
-    spring((0, 0), 3, 0.5, 5, $bold(k)$)
+    //Wall
+    wall((0, 0), 5)
 
-    // RHS node arrows
-    arrow-label(3.1, 0, 0, $bold(F)$, color: red)
-    arrow-label(3, -0.1, -1.5, $bold(q)$, color: blue)
+    // Rod 1 and related lengths and arrows
+    rod((0, 0), 3, 0.5, $bold(E_1),bold(A_1)$, -1, fill_color: rgb("#00b3ff"))
+    length-label(0, 0.1, 2, 3, $bold(L_1)$)
+    arrow-label(0, -0.1, -2, $bold(q_1)$)
+    arrow-label(3, -0.1, -2, $bold(q_2)$)
+
+
+    // Rod 2 and related lengths and arrows
+    rod((3, 0), 3, 1, $bold(E_2),bold(A_2)$, -1, fill_color: rgb("#00ffe1"))
+    length-label(3, 0.1, 2, 3, $bold(L_2)$)
+    arrow-label(6, -0.1, -2, $bold(q_3)$)
+
+    // Distributed force
+    distributed-force(4, 3.1, 0.6, $bold(p_0)$)
   }),
   caption: [Scenario with two elastic rods joined together with a distributed force applied to one of the rods.],
   supplement: [Figure],
@@ -287,19 +297,19 @@ This definition can easily be expanded for more complex loading cases. Take the 
     // Rod 1 and related lengths and arrows
     rod((0, 0), 3, 0.5, $bold(E_1),bold(A_1)$, -1, fill_color: rgb("#00b3ff"))
     length-label(0, 0.1, 2, 3, $bold(L_1)$)
-    arrow-label(0, -0.1, -2, $bold(q_1)$)
-    arrow-label(3, -0.1, -2, $bold(q_2)$)
+    arrow-label(0, -0.1, -2.75, $bold(q_1)$)
+    arrow-label(3, -0.1, -2.75, $bold(q_2)$)
+    arrow-label(3, -0.1, -1.75, $bold(F)$)
 
     // Rod 2 and related lengths and arrows
     rod((3, 0), 3, 1, $bold(E_2),bold(A_2)$, -1, fill_color: rgb("#00ffe1"))
     length-label(3, 0.1, 2, 3, $bold(L_2)$)
-    arrow-label(6.1, -0.1, 0, $bold(F)$)
-    arrow-label(6, -0.1, -2, $bold(q_3)$)
+    arrow-label(6, -0.1, -2.75, $bold(q_3)$)
 
     // Distributed force
     distributed-force(4, 3.1, 0.6, $bold(p_0)$)
   }),
-  caption: [Scenario with two elastic rods joined together with a distributed force applied to one of the rods.],
+  caption: [Scenario with two elastic rods joined together with a distributed force applied to one of the rods and an intermediate point force applied.],
   supplement: [Figure],
   kind: figure,
 )<4-elastic-rods-distforce-scenario-added-force>

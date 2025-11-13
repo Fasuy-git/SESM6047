@@ -224,33 +224,38 @@ $<3-strain-energy-elastic-rod-3>
 One issue with *@3-strain-energy-elastic-rod-3* is that the strain energy is written in terms of the deformation which currently has no relation tio the displacements $q_1 "and" q_2$. Therefore a more rigorous definition of $u(x)$ must be developed, and this is done through utilizing shape functions, shown in *@3-deformation-shape-functions*.
 
 #grid(
-  columns: (1fr, 2fr),
+  columns: (1fr, 1fr),
   align: center + horizon,
   [#figure(
-    cetz.canvas({
-      import cetz.draw: *
+    canvas({
+      import draw: *
 
-      // Y Axis
-      line((0, 0), (0, 2))
-      mark((0, 2.25), 90deg, symbol: "stealth", scale: 1.5)
-      content((0, 2.65), $bold(g)$)
-      content((-0.3, 1.5), $bold(1)$)
-      content((-0.3, 0), $bold(0)$)
+      plot.plot(
+        size: (3, 3),
+        x-min: 0,
+        x-max: 1.1,
+        x-tick-step: 10, // Move far away
+        x-ticks: (
+          // manually define ticks and labels
+          (1.0, $x = L$),
+        ),
+        y-min: 0,
+        y-max: 1.1,
+        y-tick-step: 1,
+        y-label: $bold(g(x))$,
+        legend: "south",
+        axis-style: "school-book",
+        {
+          // Define a function y = 2x + 1
+          let g_1(x) = x
+          let g_2(x) = 1 - x
 
-      // X Axis
-      line((0, 0), (3, 0))
-      mark((3.25, 0), 0deg, symbol: "stealth", scale: 1.5)
-      content((3.65, 0.1), $bold(x)$)
-      content((0, -0.4), $bold(x=0)$)
-      content((2.5, -0.4), $bold(x = L)$)
-
-      //g_1 line
-      line((0, 0), (2.5, 1.5), stroke: red)
-      content((2.5, 1.75), $bold(g_1(x))$)
-
-      //g_2 line
-      line((0, 1.5), (2.5, 0), stroke: blue)
-      content((0.75, 1.75), $bold(g_2(x))$)
+          // Add it to the plot
+          plot.add(g_1, domain: (0, 1), style: (stroke: red + 2pt), label: $g_1(x) = x "/" L$)
+          // Add it to the plot
+          plot.add(g_2, domain: (0, 1), style: (stroke: blue + 2pt), label: $g_2(x) = 1 - x "/" L$)
+        },
+      )
     }),
     caption: [Shape functions for an elastic rod.],
     supplement: [Figure],
