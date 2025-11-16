@@ -268,7 +268,7 @@ If the flexural deformation of the element is small, then the derivative of the 
         arc((2, 0), start: 0deg, stop: 40deg, radius: 2)
         mark((1.3, 1.5), 140deg, symbol: ">>", scale: 1.5, fill: black)
         content((1.25, 0.5), $bold(theta)$)
-        content((4, 4.5), $bold(w' = (d w)/(d x) = tan(theta) approx theta)$)
+        content((4, 4.5), $bold(w' = (d w)/(d x) = tan(phi.alt) approx phi.alt)$)
       }),
       caption: [Plot showing for small strains, slope is approximately equal to rotation.],
       supplement: [Figure],
@@ -333,3 +333,5 @@ $
   \
   U = 1/2 ((E I)/L^3) {q}_(1 times 4)^T [K]_(4 times 4) {q}_(4 times 1)
 $<5-beam-strain-matrix>
+
+#pagebreak()

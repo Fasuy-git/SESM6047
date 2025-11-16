@@ -3,9 +3,14 @@
 #import "@preview/equate:0.3.2": equate
 
 #import "@preview/cetz:0.4.2"
+
 #import "@preview/cetz:0.4.2": canvas, draw
+
 #import "@preview/cetz-plot:0.1.3": plot
+
 #import cetz.draw
+
+#import "@preview/pavemat:0.2.0": pavemat
 
 #let lecture(title, level, week-num) = {
   // Define week tag box
@@ -215,4 +220,54 @@
   // Place nodes if true
   if node_1 { cetz.draw.circle(point_0, radius: node_radi, fill: white) }
   if node_2 { cetz.draw.circle((x0 + length, y0), radius: node_radi, fill: white) }
+}
+
+#let circular-arrow-label(
+  point_0,
+  content-string,
+  start_angle: 60deg,
+  end_angle: -230deg,
+  radius: 0.5,
+  mark_offset_angle: -15deg,
+  mark_scale: 1.5,
+  content_x_shift: 0,
+  content_y_shift: 0,
+) = {
+  let (x0, y0) = (point_0.at(0), point_0.at(1))
+  let center_x_shift = radius * calc.cos(start_angle)
+  let center_y_shift = radius * calc.sin(start_angle)
+
+  let mark_angle = end_angle + 270deg
+  let mark_x_shift = -radius * calc.sin(mark_angle + mark_offset_angle)
+  let mark_y_shift = radius * calc.cos(mark_angle + mark_offset_angle)
+
+  cetz.draw.arc((x0 + center_x_shift, y0 + center_y_shift), start: start_angle, stop: end_angle, radius: radius)
+
+  cetz.draw.mark((x0 + mark_x_shift, y0 + mark_y_shift), mark_angle, symbol: ">>", scale: mark_scale, fill: white)
+  cetz.draw.content((x0 - radius * 1.75 + content_x_shift, y0 + content_y_shift), content-string)
+}
+
+#let vertical-arrow-label(
+  point_0,
+  height,
+  content_string,
+  horizontal_offset: 0,
+  x_padding: 0,
+  y_padding: 0.25,
+  color: black,
+) = {
+  let (x0, y0) = (point_0.at(0), point_0.at(1))
+  cetz.draw.line((x0, y0), (x0 + horizontal_offset, y0), (x0 + horizontal_offset, y0 + height), stroke: color)
+  cetz.draw.mark(
+    (x0 + horizontal_offset, y0 + height + 0.25),
+    90deg,
+    symbol: "stealth",
+    scale: 1.5,
+    stroke: color,
+    fill: white,
+  )
+  cetz.draw.content(
+    (x0 + horizontal_offset + x_padding, y0 + height + 0.25 + y_padding),
+    text(fill: color)[#content_string],
+  )
 }
