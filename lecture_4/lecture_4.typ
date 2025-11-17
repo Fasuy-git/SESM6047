@@ -139,7 +139,6 @@ Note that the only difference here is the stiffness in the bottom right cell. Al
     // Spring and wall
     spring((3, 0), 2, 0.5, 4, $bold(k)$, content_y_shift: 1.75, color: orange)
 
-
     // Rod 2 and related lengths and arrows
     wall((8, 0), 4, flipped_and_reversed: true)
     rod((5, 0), 3, 1, $bold(E_2),bold(A_2)$, -1, fill_color: rgb("#00ffe1"))
