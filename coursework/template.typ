@@ -14,6 +14,8 @@
 
 #import "@preview/numty:0.0.5" as nt
 
+#import "@preview/lilaq:0.5.0" as lq
+
 #let lecture(title, level, week-num) = {
   // Define week tag box
   let week-tag = box(
